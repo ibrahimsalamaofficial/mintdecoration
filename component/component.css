@@ -755,7 +755,7 @@ img {
                             align-items: center;
                             padding: 10px 20px;
                             text-decoration: none;
-                            color: #555;
+                            color: #333333;
                             letter-spacing: -0.5px;
                             transition: background-color 0.3s ease, color 0.3s ease;
                             &:hover {
