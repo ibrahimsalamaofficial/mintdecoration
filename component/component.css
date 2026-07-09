@@ -46,11 +46,11 @@ html {
     --color-danger: #FF443A;
     --color-success: #30D158;
     --color-secondary-darker: #E8EDF2;
-    --color-grey: #F5F7F9;
+    --color-grey: #e8e7df;
     --color-grey-light: #F8F8F8;
     --color-grey-lighter: #FCFCFC;
     --color-grey-dark: #f0f2f5;
-    --color-grey-darker: #ecf0f5;
+    --color-grey-darker: #fffdf2;
     --color-grey-darkest: #dde4ec;
     --color-dark: #6e747b;
     --color-grey-border: #eee;
@@ -150,7 +150,7 @@ img {
     }
     /* Top Header */
     .top-header {
-        background-color: #fff;
+        background-color: #FFFEF6;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -436,7 +436,7 @@ img {
     header {
         position: relative;
         z-index: 20;
-        background-color: #fff;
+        background-color: #FFFEF6;
         border-bottom: 1px solid var(--color-grey);
         height: 95px;
         padding: 20px 0;
@@ -707,6 +707,7 @@ img {
                 .sub-menu,
                 .sub-sub-menu {
                     list-style: none;
+                    border-inline-start: 1px solid #000000;
                     padding: 0;
                     margin: 0;
                     background-color: var(--color-grey-darker);
@@ -1323,6 +1324,7 @@ section {
         .bottom {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 0.5rem;
             padding: 10px 5px;
             .info-wrapper {
