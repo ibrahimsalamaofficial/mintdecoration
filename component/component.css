@@ -485,6 +485,7 @@ img {
                             height: 45px;
                             padding-left: 2.5rem;
                             background-image: url('../media/images/icons/search.svg');
+                            background-color: #ffffff80;
                             background-size: 15px;
                             background-position: 15px center;
                             background-repeat: no-repeat;
