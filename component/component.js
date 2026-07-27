@@ -316,3 +316,121 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = `/${selectedLang}${finalPath}`;
     });
 });
+
+// Favourite & Color Switch
+document.addEventListener("DOMContentLoaded", () => {
+    const products = [...document.querySelectorAll(".product")];
+    const isArabic = document.documentElement.lang === "ar";
+    const storageKey = "mint-decoration-favourites";
+    const colourImages = [
+        { gold: "15.avif", black: "12.avif" },
+        { gold: "11.avif", black: "4.avif" },
+        { gold: "13.avif", black: "10.avif" },
+        { gold: "14.avif", black: "12.avif" },
+        { gold: "15.avif", black: "9.avif" },
+        { gold: "13.avif", black: "10.avif" },
+        { gold: "14.avif", black: "12.avif" },
+        { gold: "15.avif", black: "9.avif" },
+        { gold: "13.avif", black: "10.avif" }
+    ];
+
+    const readFavourites = () => {
+        try {
+            const saved = JSON.parse(localStorage.getItem(storageKey));
+            return Array.isArray(saved) ? saved : [];
+        } catch {
+            return [];
+        }
+    };
+
+    let favourites = readFavourites();
+
+    const createColourImage = (colour, fileName, alt) => {
+        const image = document.createElement("div");
+        image.className = `image ${colour}-image`;
+        image.innerHTML = `<picture><img src="../media/images/products/categories/handles/${fileName}" alt="${alt}" loading="lazy"></picture>`;
+        return image;
+    };
+
+    const showColour = (product, colour) => {
+        const selectedImage = product.querySelector(`.${colour}-image`) ||
+            product.querySelector(".main-image");
+
+        product.querySelectorAll(".product-image .image").forEach(image => {
+            image.classList.toggle("active", image === selectedImage);
+        });
+        product.querySelectorAll(".product-colors .color").forEach(option => {
+            const selected = option.classList.contains(colour) &&
+                !option.classList.contains("unavilable");
+            option.classList.toggle("active", selected);
+            option.setAttribute("aria-pressed", String(selected));
+        });
+    };
+
+    products.forEach((product, index) => {
+        const productId = `featured-product-${index + 1}`;
+        const imageContainer = product.querySelector(".product-image");
+        const originalImage = imageContainer?.querySelector(".image");
+        const imageAlt = originalImage?.querySelector("img")?.alt ||
+            (isArabic ? "صورة المنتج" : "Product image");
+        const favouriteButton = product.querySelector(".favourite button");
+
+        product.dataset.productId = productId;
+
+        if (originalImage && imageContainer) {
+            originalImage.classList.add("main-image");
+            Object.entries(colourImages[index] || {}).forEach(([colour, fileName]) => {
+                if (!imageContainer.querySelector(`.${colour}-image`)) {
+                    imageContainer.append(createColourImage(colour, fileName, imageAlt));
+                }
+            });
+
+            const activeOption = product.querySelector(".product-colors .color.active:not(.unavilable)");
+            const initialColour = activeOption &&
+                [...activeOption.classList].find(name => colourImages[index]?.[name]);
+            showColour(product, initialColour || "main");
+        }
+
+        product.querySelectorAll(".product-colors .color").forEach(option => {
+            const colour = [...option.classList].find(name => colourImages[index]?.[name]);
+            const unavailable = option.classList.contains("unavilable");
+            option.setAttribute("role", "button");
+            option.setAttribute("tabindex", unavailable ? "-1" : "0");
+            option.setAttribute("aria-label", option.dataset.title || colour || "");
+            option.setAttribute("aria-disabled", String(unavailable));
+
+            const selectColour = () => {
+                if (!unavailable && colour) showColour(product, colour);
+            };
+            option.addEventListener("click", selectColour);
+            option.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    selectColour();
+                }
+            });
+        });
+
+        if (favouriteButton) {
+            const syncFavourite = () => {
+                const selected = favourites.includes(productId);
+                product.classList.toggle("favourite-product", selected);
+                favouriteButton.setAttribute("aria-pressed", String(selected));
+                favouriteButton.setAttribute("aria-label", selected
+                    ? (isArabic ? "إزالة من المفضلة" : "Remove from favourites")
+                    : (isArabic ? "إضافة إلى المفضلة" : "Add to favourites"));
+                favouriteButton.title = favouriteButton.getAttribute("aria-label");
+            };
+
+            favouriteButton.type = "button";
+            syncFavourite();
+            favouriteButton.addEventListener("click", () => {
+                favourites = favourites.includes(productId)
+                    ? favourites.filter(id => id !== productId)
+                    : [...favourites, productId];
+                localStorage.setItem(storageKey, JSON.stringify(favourites));
+                syncFavourite();
+            });
+        }
+    });
+});

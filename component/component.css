@@ -437,7 +437,6 @@ img {
         position: relative;
         z-index: 20;
         background-color: #FFFEF6;
-        border-bottom: 1px solid var(--color-grey);
         height: 95px;
         padding: 20px 0;
         display: flex;
@@ -532,7 +531,7 @@ img {
                         cursor: pointer;
                         align-content: center;
                         text-align: center;
-                        @media (max-width: 768px) {
+                        @media (max-width: 992px) {
                             display: flex;
                         }
                         svg {
@@ -660,13 +659,25 @@ img {
                 right: 0;
                 z-index: 998;
                 top: var(--mobile-menu-top, var(--mobile-header-height, 65px));
+                height: calc(100vh - var(--mobile-menu-top, var(--mobile-header-height, 65px)));
+                overflow: auto;
                 .container {
                     position: static;
                 }
                 .main-menu {
-                    max-height: 70vh;
-                    height: 70vh;
                     overflow: auto;
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                    }
+                    &::-webkit-scrollbar-track {
+                        background: #f1f1f1;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #333333;
+                    }
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: #111111;
+                    }
                 }
             }
         }
@@ -687,9 +698,11 @@ img {
                     color: #333;
                     font-weight: 500;
                     letter-spacing: -0.5px;
-                    transition: background-color 0.3s ease, color 0.3s ease;
+                    transition: all 0.3s ease;
+                    border-inline-start: 1px solid transparent;
                     &:hover {
                         background-color: var(--color-grey-darker);
+                        border-inline-start: 1px solid #000000;
                     }
                     span {
                         margin-inline-end: 4px;
@@ -1311,12 +1324,22 @@ section {
                 height: 100%;
                 .product-image {
                     display: flex;
-                    img {
-                        aspect-ratio: 1 / 1;
+                    width: 100%;
+                    height: 100%;
+                    .image {
+                        display: none;
                         width: 100%;
                         height: 100%;
-                        object-fit: cover;
-                        border-radius: 12px;
+                        &.active {
+                            display: block;
+                        }
+                        img {
+                            aspect-ratio: 1 / 1;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: 12px;
+                        }
                     }
                 }
             }
@@ -1327,46 +1350,165 @@ section {
             justify-content: space-between;
             gap: 0.5rem;
             padding: 10px 5px;
-            .info-wrapper {
-                color: #333333;
-                .product-info {
-                    .category {
-                        p {
-                            font-size: 14px;
-                            opacity: 0.8;
-                        }
-                    }
-                    .product-name {
-                        h4 {
-                            font-size: 1.1rem;
-                            font-weight: 400;
-                            letter-spacing: 1px;
-                            text-transform: uppercase;
-                            text-decoration: underline;
-                            @media (max-width: 768px) {
-                                font-size: 1.1rem;
+            @media (max-width: 768px) {
+                flex-wrap: wrap;
+            }
+            .product-info-start {
+                .info-wrapper {
+                    color: #333333;
+                    .product-info {
+                        .category {
+                            p {
+                                font-size: 14px;
+                                opacity: 0.8;
                             }
                         }
-                    }
-                    .product-price {
-                        color: #031c49;
-                        p {
-                            font-size: 16px;
-                            font-weight: 600;
-                            @media (max-width: 768px) {
-                                font-size: 14px;
+                        .product-name {
+                            h4 {
+                                font-size: 1.1rem;
+                                font-weight: 400;
+                                letter-spacing: 1px;
+                                text-transform: uppercase;
+                                text-decoration: none;
+                                @media (max-width: 768px) {
+                                    font-size: 1.1rem;
+                                }
+                                [dir="rtl"] & {
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                        .product-price {
+                            color: #031c49;
+                            p {
+                                font-size: 16px;
+                                font-weight: 600;
+                                @media (max-width: 768px) {
+                                    font-size: 14px;
+                                }
                             }
                         }
                     }
                 }
             }
-            .product-actions {
-                .action {
-                    a {
-                        padding-inline: 10px;
-                        height: 30px;
-                        font-size: 14px;
-                        font-weight: 500;
+            .product-info-end {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 1rem;
+                @media (max-width: 768px) {
+                    width: 100%;
+                    flex-direction: row-reverse;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                .product-actions {
+                    .action {
+                        a {
+                            padding-inline: 10px;
+                            height: 30px;
+                            font-size: 14px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+                .product-colors {
+                    .colors {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 0.5rem;
+                        @media (max-width: 768px) {
+                            gap: 0.3rem;
+                        }
+                        .color {
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
+                            position: relative;
+                            cursor: pointer;
+                            opacity: 0.8;
+                            opacity: 1;
+                            border: 2px solid #000000;
+                            line-height: 0;
+                            @media (max-width: 768px) {
+                                width: 20px;
+                                height: 20px;
+                            }
+                            &::after {
+                                content: attr(data-title);
+                                display: flex;
+                                position: absolute;
+                                bottom: calc(100% + 10px);
+                                left: 50%;
+                                transform: translateX(-50%);
+                                padding: 8px;
+                                background: #000000;
+                                color: #fff;
+                                border-radius: 8px;
+                                font-size: 12px;
+                                font-weight: 600;
+                                white-space: nowrap;
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: .25s;
+                                line-height: 1;
+                            }
+                            &:hover {
+                                &::after {
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+                            }
+                            &.unavilable {
+                                border: 2px solid #000000;
+                                position: relative;
+                                opacity: 0.6;
+                                cursor: not-allowed;
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    bottom: 0;
+                                    left: 50%;
+                                    height: calc(100% + 2px);
+                                    width: 1.5px;
+                                    transform: rotate(45deg) translateX(-50%);
+                                    background-color: #000000;
+                                }
+                            }
+                            &.orange {
+                                background-color: #FFA500;
+                            }
+                            &.red {
+                                background-color: #F00;
+                            }
+                            &.gold {
+                                background-color: #F0D022;
+                            }
+                            &.brown {
+                                background-color: #a71f00;
+                            }
+                            &.blue {
+                                background-color: #00F;
+                            }
+                            &.green {
+                                background-color: #0F0;
+                            }
+                            &.yellow {
+                                background-color: #FF0;
+                            }
+                            &.black {
+                                background-color: #000;
+                            }
+                            &.white {
+                                background-color: #FFF;
+                            }
+                            &.active:not(.unavilable) {
+                                outline: 2px solid #7b6a48;
+                                outline-offset: 3px;
+                            }
+                        }
                     }
                 }
             }
