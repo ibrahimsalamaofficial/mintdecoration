@@ -148,290 +148,6 @@ img {
     &.is-scrolled {
         top: var(--header-wrapper-top);
     }
-    /* Top Header */
-    .top-header {
-        background-color: #FFFEF6;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0px;
-        color: #333333;
-        border-bottom: 1px solid var(--color-grey);
-        @media only screen and (max-width: 767px) {
-            padding: 1rem 0;
-        }
-        .container {
-            .inside {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 1rem;
-                @media (max-width: 768px) {
-                    flex-wrap: wrap;
-                }
-                .start {
-                    .contact {
-                        display: flex;
-                        align-items: center;
-                        gap: 30px;
-                        @media (max-width: 992px){
-                            flex-direction: column;
-                            align-items: flex-start;
-                        }
-                        @media (max-width: 768px){
-                            gap: 10px;
-                        }
-                        a {
-                            display: flex;
-                            align-items: center;
-                            gap: 3px;
-                            font-size: 14px;
-                            font-weight: 500;
-                            color: #333333;
-                            svg {
-                                width: 17px;
-                            }
-                        }
-                    }
-                }
-                .end {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    .toggle{
-                        position: relative;
-                        button {
-                            cursor: pointer;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            text-align: center;
-                            padding: 10px 20px;
-                            gap: 3px;
-                            font-size: 14px;
-                            font-weight: 600;
-                            border-radius: 50rem;
-                            color: #333333;
-                            background-color: var(--color-grey);
-                            border: none;
-                            @media (max-width: 992px) {
-                                padding: 8px 12px;
-                                font-size: 13px;
-                            }
-                            &:hover {
-                                background-color: var(--color-grey-dark);
-                            }
-                            svg, img {
-                                width: 14px;
-                            }
-                        }
-                        .box {
-                            user-select: none;
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background-color: rgba(0, 0, 0, 0.5);
-                            z-index: 10000;
-                            .innerbox {
-                                margin: 0 auto;
-                                height: 100%;
-                                width: 100%;
-                                padding: 15px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                gap: 1rem;
-                                .c-content {
-                                    background-color: #fff;
-                                    width: 380px;
-                                    max-width: 100%;
-                                    padding: 1.5rem;
-                                    border-radius: 4px;
-                                }
-                            }
-                        }
-                        &.language {
-                            .box {
-                                .innerbox {
-                                    .c-content {
-                                        .top {
-                                            display: flex;
-                                            justify-content: space-between;
-                                            align-items: center;
-                                            margin-bottom: 20px;
-                                            .close {
-                                                cursor: pointer;
-                                                svg {
-                                                    width: 25px;
-                                                }
-                                            }
-                                            span {
-                                                font-size: 16px;
-                                                font-weight: 500;
-                                            }
-                                        }
-                                        .content {
-                                            display: flex;
-                                            flex-direction: column;
-                                            gap: 0.5rem;
-                                            .langs {
-                                                margin-bottom: 20px;
-                                                display: flex;
-                                                flex-direction: column;
-                                                justify-content: center;
-                                                align-items: center;
-                                                gap: 0.5rem;
-                                                label {
-                                                    cursor: pointer;
-                                                    width: 100%;
-                                                    text-align: center;
-                                                    font-size: 14px;
-                                                    font-weight: 500;
-                                                    padding: 10px 5px;
-                                                    border-radius: 8px;
-                                                    &:has(input[type=radio]) {
-                                                        border: 1px solid #333333;
-                                                    }
-                                                    &:has(input[type=radio]:checked) {
-                                                        background: #333333;
-                                                        color: #FFFFFF;
-                                                    }
-                                                    input[type=radio] {
-                                                        position:absolute;
-                                                        opacity: 0;
-                                                    }
-                                                }
-                                            }
-                                            button {
-                                                position: relative;
-                                                background: url(../media/images/photos/button-bg.jpg);
-                                                background-size: cover;
-                                                background-position: center;
-                                                background-repeat: no-repeat;
-                                                cursor: pointer;
-                                                width: 100%;
-                                                padding: 20px 10px;
-                                                border-radius: 4px;
-                                                color: #FFFFFF;
-                                                font-size: 14px;
-                                                font-weight: 500;
-                                                border: 1px solid #333333;
-                                                span {
-                                                    position: absolute;
-                                                    color: #FFFFFF;
-                                                    z-index: 2;
-                                                }
-                                                &::after {
-                                                    content: "";
-                                                    position: absolute;
-                                                    z-index: 1;
-                                                    top: 0;
-                                                    left: 0;
-                                                    width: 100%;
-                                                    height: 100%;
-                                                    background-color: rgba(0, 0, 0, 0.15);
-                                                    transition: all 0.3s ease-in-out;
-                                                }
-                                                &:hover {
-                                                    &::after {
-                                                        background-color: rgba(0, 0, 0, 0.25);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        &.login {
-                            .box {
-                                .innerbox {
-                                    .c-content {
-                                        .top {
-                                            display: flex;
-                                            flex-direction: column;
-                                            justify-content: flex-end;
-                                            align-items: end;
-                                            margin-bottom: 20px;
-                                            .close {
-                                                cursor: pointer;
-                                                svg {
-                                                    width: 25px;
-                                                }
-                                            }
-                                            .c-icon-login {
-                                                width: 100%;
-                                                display: flex;
-                                                flex-direction: column;
-                                                justify-content: center;
-                                                align-items: center;
-                                                gap: 0.5rem;
-                                                svg {
-                                                    width: 100px;
-                                                    border: 1px solid #333333;
-                                                    padding: 20px;
-                                                    border-radius: 50rem;
-                                                }
-                                            }
-                                        }
-                                        .content {
-                                            display: flex;
-                                            flex-direction: column;
-                                            gap: 0.5rem;
-                                            .input {
-                                                margin-bottom: 1rem;
-                                                input {
-                                                    width: 100%;
-                                                    padding: 10px 5px;
-                                                    border-radius: 8px;
-                                                    border: 1px solid var(--color-grey-border);
-                                                    font-size: 14px;
-                                                    font-weight: 500;
-                                                    &:focus {
-                                                        outline: 0;
-                                                        box-shadow: 0 0 5px rgba(0,0,0,.1);
-                                                    }
-                                                }
-                                            }
-                                            button {
-                                                position: relative;
-                                                background: url(../media/images/photos/button-bg.jpg);
-                                                background-size: cover;
-                                                background-position: center;
-                                                background-repeat: no-repeat;
-                                                background-blend-mode: darken;
-                                                background-color: #d1c7a2;
-                                                cursor: pointer;
-                                                width: 100%;
-                                                padding: 20px 10px;
-                                                border-radius: 4px;
-                                                color: #FFFFFF;
-                                                font-size: 14px;
-                                                font-weight: 500;
-                                                border: 1px solid #333333;
-                                                span {
-                                                    position: absolute;
-                                                    color: #FFFFFF;
-                                                    z-index: 2;
-                                                }
-                                                &:hover {
-                                                    &::after {
-                                                        background-color: rgba(0, 0, 0, 0.25);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
     /* Middle Header */
     header {
         position: relative;
@@ -539,6 +255,242 @@ img {
                             width: 25px;
                         }
                     }
+                    .header-actions {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-inline-start: 0.5rem;
+                        .toggle{
+                            position: relative;
+                            button {
+                                cursor: pointer;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;
+                                padding: 10px;
+                                gap: 3px;
+                                font-size: 14px;
+                                font-weight: 600;
+                                border-radius: 50rem;
+                                color: #333333;
+                                background-color: var(--color-grey);
+                                border: none;
+                                @media (max-width: 992px) {
+                                    padding: 8px 12px;
+                                    font-size: 13px;
+                                }
+                                &:hover {
+                                    box-shadow: 0 0 10px rgba(0,0,0,.1);
+                                }
+                                svg, img {
+                                    width: 14px;
+                                }
+                            }
+                            .box {
+                                user-select: none;
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                z-index: 10;
+                                .innerbox {
+                                    margin: 0 auto;
+                                    height: 100%;
+                                    width: 100%;
+                                    padding: 15px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 1rem;
+                                    .c-content {
+                                        background-color: #fff;
+                                        width: 380px;
+                                        max-width: 100%;
+                                        padding: 1.5rem;
+                                        border-radius: 4px;
+                                    }
+                                }
+                            }
+                            &.language {
+                                .box {
+                                    .innerbox {
+                                        .c-content {
+                                            .top {
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                margin-bottom: 20px;
+                                                .close {
+                                                    cursor: pointer;
+                                                    svg {
+                                                        width: 25px;
+                                                    }
+                                                }
+                                                span {
+                                                    font-size: 16px;
+                                                    font-weight: 500;
+                                                }
+                                            }
+                                            .content {
+                                                display: flex;
+                                                flex-direction: column;
+                                                gap: 0.5rem;
+                                                .langs {
+                                                    margin-bottom: 20px;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    gap: 0.5rem;
+                                                    label {
+                                                        cursor: pointer;
+                                                        width: 100%;
+                                                        text-align: center;
+                                                        font-size: 14px;
+                                                        font-weight: 500;
+                                                        padding: 10px 5px;
+                                                        border-radius: 8px;
+                                                        &:has(input[type=radio]) {
+                                                            border: 1px solid #333333;
+                                                        }
+                                                        &:has(input[type=radio]:checked) {
+                                                            background: #333333;
+                                                            color: #FFFFFF;
+                                                        }
+                                                        input[type=radio] {
+                                                            position:absolute;
+                                                            opacity: 0;
+                                                        }
+                                                    }
+                                                }
+                                                button {
+                                                    position: relative;
+                                                    background: url(../media/images/photos/button-bg.jpg);
+                                                    background-size: cover;
+                                                    background-position: center;
+                                                    background-repeat: no-repeat;
+                                                    cursor: pointer;
+                                                    width: 100%;
+                                                    padding: 20px 10px;
+                                                    border-radius: 4px;
+                                                    color: #FFFFFF;
+                                                    font-size: 14px;
+                                                    font-weight: 500;
+                                                    border: 1px solid #333333;
+                                                    span {
+                                                        position: absolute;
+                                                        color: #FFFFFF;
+                                                        z-index: 2;
+                                                    }
+                                                    &::after {
+                                                        content: "";
+                                                        position: absolute;
+                                                        z-index: 1;
+                                                        top: 0;
+                                                        left: 0;
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        background-color: rgba(0, 0, 0, 0.15);
+                                                        transition: all 0.3s ease-in-out;
+                                                    }
+                                                    &:hover {
+                                                        &::after {
+                                                            background-color: rgba(0, 0, 0, 0.25);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &.login {
+                                .box {
+                                    .innerbox {
+                                        .c-content {
+                                            .top {
+                                                display: flex;
+                                                flex-direction: column;
+                                                justify-content: flex-end;
+                                                align-items: end;
+                                                margin-bottom: 20px;
+                                                .close {
+                                                    cursor: pointer;
+                                                    svg {
+                                                        width: 25px;
+                                                    }
+                                                }
+                                                .c-icon-login {
+                                                    width: 100%;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    gap: 0.5rem;
+                                                    svg {
+                                                        width: 100px;
+                                                        border: 1px solid #333333;
+                                                        padding: 20px;
+                                                        border-radius: 50rem;
+                                                    }
+                                                }
+                                            }
+                                            .content {
+                                                display: flex;
+                                                flex-direction: column;
+                                                gap: 0.5rem;
+                                                .input {
+                                                    margin-bottom: 1rem;
+                                                    input {
+                                                        width: 100%;
+                                                        padding: 10px 5px;
+                                                        border-radius: 8px;
+                                                        border: 1px solid var(--color-grey-border);
+                                                        font-size: 14px;
+                                                        font-weight: 500;
+                                                        &:focus {
+                                                            outline: 0;
+                                                            box-shadow: 0 0 5px rgba(0,0,0,.1);
+                                                        }
+                                                    }
+                                                }
+                                                button {
+                                                    position: relative;
+                                                    background: url(../media/images/photos/button-bg.jpg);
+                                                    background-size: cover;
+                                                    background-position: center;
+                                                    background-repeat: no-repeat;
+                                                    background-blend-mode: darken;
+                                                    background-color: #d1c7a2;
+                                                    cursor: pointer;
+                                                    width: 100%;
+                                                    padding: 20px 10px;
+                                                    border-radius: 4px;
+                                                    color: #FFFFFF;
+                                                    font-size: 14px;
+                                                    font-weight: 500;
+                                                    border: 1px solid #333333;
+                                                    span {
+                                                        position: absolute;
+                                                        color: #FFFFFF;
+                                                        z-index: 2;
+                                                    }
+                                                    &:hover {
+                                                        &::after {
+                                                            background-color: rgba(0, 0, 0, 0.25);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     .cart {
                         margin-inline: 1rem;
                         position: relative;
@@ -555,7 +507,7 @@ img {
                                 translate: 0 -1px;
                             }
                             svg {
-                                width: 40px;
+                                width: 28px;
                                 @media (max-width: 768px) {
                                     width: 25px;
                                 }
@@ -573,19 +525,6 @@ img {
                                 justify-content: center;
                                 align-items: center;
                                 font-size: 12px;
-                            }
-                            p {
-                                font-size: 14px;
-                                font-weight: 500;
-                                @media (max-width: 768px) {
-                                    display: none;
-                                }
-                            }
-                            img {
-                                width: 15px;
-                                @media (max-width: 768px) {
-                                    display: none;
-                                }
                             }
                         }
                     }
@@ -650,7 +589,7 @@ img {
         background-color: var(--color-grey);
         position: sticky;
         top: 0;
-        z-index: 50;
+        z-index: 11;
         @media (max-width: 992px) {
             position: relative;
             z-index: 998;
@@ -1016,14 +955,13 @@ img {
 }
 /* Hero */
 .landing {
-    /* height: calc(100vh - calc(95px + 102px + 53px)); */
     width: 100%;
-    margin-top: 20px;
+    margin-top: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     @media (max-width: 768px) {
-        margin-top: 0;
+        margin-top: 40px;
     }
     .container {
         height: 100%;
@@ -1101,6 +1039,10 @@ section {
     @media (max-width: 768px) {
         margin-top: 50px;
         padding-block: 20px;
+    }
+    &.no-padding-margin {
+        padding: 0;
+        margin: 0;
     }
     .inside {
         display: flex;
@@ -1245,10 +1187,6 @@ section {
             }
         }
     }
-    .products {
-        display: flex;
-        flex-wrap: wrap;
-    }
     .automatic-manual-scroll-wrapper {
         .products {
             display: flex;
@@ -1264,19 +1202,9 @@ section {
     }
     .product {
         position: relative;
-        flex-basis: calc(100% / 4.4);
         flex-shrink: 0;
         scroll-snap-align: start;
         scroll-snap-stop: always;
-        @media (max-width: 992px) {
-            flex-basis: calc(100% / 3.3);
-        }
-        @media (max-width: 768px) {
-            flex-basis: calc(100% / 2.4);
-        }
-        @media (max-width: 552px) {
-            flex-basis: calc(100% / 1.4);
-        }
         .top {
             position: relative;
             width: 100%;
@@ -1308,13 +1236,14 @@ section {
                     font-size: 12px;
                     border: none;
                     cursor: pointer;
+                    @media (max-width: 768px) {
+                        width: 30px;
+                        height: 30px;
+                    }
                     svg {
                         width: 20px;
                         stroke: #000000;
                         fill: none;
-                        @media (max-width: 768px) {
-                            width: 25px;
-                        }
                     }
                 }
             }
@@ -1347,32 +1276,39 @@ section {
         }
         .bottom {
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: space-between;
             gap: 0.5rem;
             padding: 10px 5px;
             @media (max-width: 768px) {
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
+                gap: 0;
             }
             .product-info-start {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 0.3rem;
                 .info-wrapper {
                     color: #333333;
                     .product-info {
-                        .category {
-                            p {
-                                font-size: 14px;
-                                opacity: 0.8;
-                            }
-                        }
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.2rem;
                         .product-name {
                             h4 {
                                 font-size: 1.1rem;
-                                font-weight: 400;
-                                letter-spacing: 1px;
-                                text-transform: uppercase;
+                                font-weight: 500;
+                                letter-spacing: 0.2px;
+                                text-transform: capitalize;
                                 text-decoration: none;
                                 @media (max-width: 768px) {
                                     font-size: 1.1rem;
+                                }
+                                @media (max-width: 552px) {
+                                    font-size: 0.875rem;
+                                    letter-spacing: 0.2px;
                                 }
                                 [dir="rtl"] & {
                                     font-weight: 600;
@@ -1388,28 +1324,6 @@ section {
                                     font-size: 14px;
                                 }
                             }
-                        }
-                    }
-                }
-            }
-            .product-info-end {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 1rem;
-                @media (max-width: 768px) {
-                    width: 100%;
-                    flex-direction: row-reverse;
-                    align-items: center;
-                    justify-content: space-between;
-                }
-                .product-actions {
-                    .action {
-                        a {
-                            padding-inline: 10px;
-                            height: 30px;
-                            font-size: 14px;
-                            font-weight: 500;
                         }
                     }
                 }
@@ -1430,7 +1344,6 @@ section {
                             cursor: pointer;
                             opacity: 0.8;
                             opacity: 1;
-                            border: 2px solid #000000;
                             line-height: 0;
                             @media (max-width: 768px) {
                                 width: 20px;
@@ -1485,10 +1398,13 @@ section {
                                 background-color: #F00;
                             }
                             &.gold {
-                                background-color: #F0D022;
+                                background-color: #CCA257;
                             }
                             &.brown {
                                 background-color: #a71f00;
+                            }
+                            &.silver {
+                                background-color: #C0C0C0;
                             }
                             &.blue {
                                 background-color: #00F;
@@ -1506,9 +1422,28 @@ section {
                                 background-color: #FFF;
                             }
                             &.active:not(.unavilable) {
-                                outline: 2px solid #7b6a48;
-                                outline-offset: 3px;
+                                border: 2px solid #555555;
                             }
+                        }
+                        p {
+                            font-size: 16px;
+                            font-weight: 600;
+                            margin-inline-start: 5px;
+                            @media (max-width: 768px) {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+            .product-info-end {
+                .product-actions {
+                    .action {
+                        a {
+                            padding-inline: 10px;
+                            height: 30px;
+                            font-size: 18px;
+                            font-weight: 500;
                         }
                     }
                 }
@@ -1524,6 +1459,27 @@ section {
                         }
                     }
                 }
+            }
+        }
+    }
+    .products {
+        display: flex;
+        flex-wrap: wrap;
+        .product {
+            flex-basis: calc(100% / 4.4);
+            @media (max-width: 992px) {
+                flex-basis: calc(100% / 3.3);
+            }
+            @media (max-width: 768px) {
+                flex-basis: calc(100% / 2.4);
+            }
+            @media (max-width: 552px) {
+                flex-basis: calc(100% / 1.4);
+            }
+        }
+        &.one-product {
+            .product {
+                flex-basis: 100%;
             }
         }
     }

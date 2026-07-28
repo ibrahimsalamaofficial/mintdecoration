@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lockBody = () => body.style.overflow = "hidden";
 
     const hasOpenPopup = () =>
-        document.querySelector(".top-header .toggle-box:not([hidden]), .top-header .box:not([hidden])");
+        document.querySelector(".header-wrapper .toggle-box:not([hidden]), .header-wrapper .box:not([hidden])");
 
     const unlockBody = () => {
         if (!hasOpenPopup() && !document.querySelector("nav.nav-open")) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const closeAllPopups = (except = null) => {
-        $all(".top-header .toggle-box, .top-header .box").forEach(box => {
+        $all(".header-wrapper .toggle-box, .header-wrapper .box").forEach(box => {
             if (box !== except) {
                 box.hidden = true;
                 box.closest(".toggle")?.querySelector("button")?.setAttribute("aria-expanded", "false");
@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setVars();
 
-    // Top Header Popups
-    $all(".top-header .toggle").forEach(toggle => {
+    // Header Popups
+    $all(".header-wrapper .toggle").forEach(toggle => {
         const btn = toggle.querySelector("button");
         const box = toggle.querySelector(".toggle-box, .box");
         if (!btn || !box) return;
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             e.stopPropagation();
 
-            const toggle = document.querySelector(`.top-header .toggle.${trigger.dataset.popupTrigger}`);
+            const toggle = document.querySelector(`.header-wrapper .toggle.${trigger.dataset.popupTrigger}`);
             if (toggle) openPopup(toggle);
         });
     });
@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const topHeader = document.querySelector(".top-header");
     const header = document.querySelector("header");
 
-    if (!wrapper || !topHeader) return;
+    if (!wrapper) return;
 
     const breakpoint = 992;
     const scrollPoint = 100;
@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobile = () => window.innerWidth <= breakpoint;
 
     const setHeaderVars = () => {
-        const topHeaderHeight = topHeader.offsetHeight || 0;
+        const topHeaderHeight = topHeader?.offsetHeight || 0;
         const headerHeight = header?.offsetHeight || 0;
 
         const hideHeight = isMobile()
@@ -323,15 +323,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const isArabic = document.documentElement.lang === "ar";
     const storageKey = "mint-decoration-favourites";
     const colourImages = [
-        { gold: "15.avif", black: "12.avif" },
-        { gold: "11.avif", black: "4.avif" },
-        { gold: "13.avif", black: "10.avif" },
-        { gold: "14.avif", black: "12.avif" },
-        { gold: "15.avif", black: "9.avif" },
-        { gold: "13.avif", black: "10.avif" },
-        { gold: "14.avif", black: "12.avif" },
-        { gold: "15.avif", black: "9.avif" },
-        { gold: "13.avif", black: "10.avif" }
+        { gold: "handles/door-handle-1/gold.avif", silver: "handles/door-handle-1/silver.avif", black: "handles/door-handle-1/black.avif" },
+        { gold: "handles/door-handle-2/gold.avif", silver: "handles/door-handle-2/silver.avif", black: "handles/door-handle-2/black.avif" },
+        { gold: "handles/door-handle-3/gold.avif", silver: "handles/door-handle-3/silver.avif", black: "handles/door-handle-3/black.avif" },
+        { gold: "hinges/door-hinge-1/gold.avif", silver: "hinges/door-hinge-1/silver.avif", black: "hinges/door-hinge-1/black.avif" },
+        { gold: "hinges/door-hinge-2/gold.avif", silver: "hinges/door-hinge-2/silver.avif", black: "hinges/door-hinge-2/black.avif" },
+        { gold: "hinges/door-hinge-3/gold.avif", silver: "hinges/door-hinge-3/silver.avif", black: "hinges/door-hinge-3/black.avif" },
+        { gold: "hinges/door-hinge-4/gold.avif", silver: "hinges/door-hinge-4/silver.avif", black: "hinges/door-hinge-4/black.avif" },
+        { gold: "handles/smart-handle/product.jpg", silver: "handles/smart-handle/product.jpg", black: "handles/smart-handle/product.jpg" },
+        { gold: "handles/handles.avif", silver: "handles/handles.avif", black: "handles/handles.avif" }
     ];
 
     const readFavourites = () => {
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const createColourImage = (colour, fileName, alt) => {
         const image = document.createElement("div");
         image.className = `image ${colour}-image`;
-        image.innerHTML = `<picture><img src="../media/images/products/categories/handles/${fileName}" alt="${alt}" loading="lazy"></picture>`;
+        image.innerHTML = `<picture><img src="../media/images/products/categories/${fileName}" alt="${alt}" loading="lazy"></picture>`;
         return image;
     };
 
